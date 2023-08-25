@@ -123,19 +123,11 @@ class AllProductsSection extends Component {
   }
 
   categorySelected = id => {
-    const filteredCategoryList = categoryOptions.filter(
-      eachItem => eachItem.categoryId === id,
-    )
-    const selectedCategory = filteredCategoryList[0].categoryId
-    this.setState({category: selectedCategory}, this.getProducts)
+    this.setState({category: id}, this.getProducts)
   }
 
   ratingSelected = id => {
-    const filteredRatingList = ratingsList.filter(
-      eachItem => eachItem.ratingId === id,
-    )
-    const selectedRating = filteredRatingList[0].ratingId
-    this.setState({rating: selectedRating}, this.getProducts)
+    this.setState({rating: id}, this.getProducts)
   }
 
   onClickClearFilter = () => {
@@ -234,7 +226,7 @@ class AllProductsSection extends Component {
   }
 
   render() {
-    const {titleSearch} = this.state
+    const {titleSearch, category} = this.state
 
     return (
       <div className="all-products-section">
@@ -248,6 +240,7 @@ class AllProductsSection extends Component {
           searchValue={this.searchValue}
           titleSearch={titleSearch}
           enterSearchValue={this.enterSearchValue}
+          category={category}
         />
 
         {this.renderProductsDetails()}
